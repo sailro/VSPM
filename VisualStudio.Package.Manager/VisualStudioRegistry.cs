@@ -35,6 +35,7 @@ namespace VisualStudio.Package.Manager
             {
                 package.Id = packageId;
                 package.Enabled = true;
+                package.Source = PackageSource.Registry;
                 package.Name = key.GetValue(null, "?") as string;
             });
         }

@@ -30,16 +30,35 @@ namespace VisualStudio.Package.Manager
             if (!File.Exists(file)) 
                 return;
 
-            var content = File.ReadAllLines(file).Select(l => l.Trim()).Where(l => !l.StartsWith(";")).ToList();
+            var packages = Packages.Where(p => p.Source == PackageSource.Registry).ToList();
+            var content = File.ReadAllLines(file).Select(l => l.Trim()).ToList();
 
-            foreach (var package in Packages)
-                package.Enabled = content.All(l => !string.Equals(package.PathId, l, StringComparison.OrdinalIgnoreCase));
+            var disabledIds = content.Where(l => !l.StartsWith(";")).ToList();
+            var disabledPackages = content.Where(l => l.StartsWith(";") && (l.Split('|').Length == 2));
+
+            foreach (var package in packages)
+                package.Enabled = disabledIds.All(l => !string.Equals(package.PathId, l, StringComparison.OrdinalIgnoreCase));
+
+            foreach (var line in disabledPackages)
+            {
+                var tokens = line.Substring(1).Split('|');
+                var package = new VisualStudioPackage
+                {
+                    Name = tokens[0],
+                    Id = tokens[1],
+                    Source = PackageSource.File
+                };
+                if (packages.All(p => p.Id != package.Id))
+                    packages.Add(package);
+            }
+
+            Packages = packages;
         }
 
         private void UpdateUndefFile()
         {
             var file = Path.Combine(InstallDir, PkgUndefFileName);
-            var content = Packages.Where(p => !p.Enabled).Select(p => string.Concat(";", p.Name, Environment.NewLine, p.PathId));
+            var content = Packages.Where(p => !p.Enabled).Select(p => string.Concat(";", p.Name, "|", p.Id, Environment.NewLine, p.PathId));
             
             File.WriteAllLines(file, content);
         }

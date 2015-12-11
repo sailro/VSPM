@@ -43,7 +43,10 @@ namespace VisualStudio.Package.Manager.GUI
             if (configuration == null)
                 return;
 
-            var list = configuration.Packages.Where(p => p.Name.ToLower().Contains(PackageFilter.Text.ToLower())).ToList();
+            var list = configuration.Packages
+                .Where(p => p.Name != "?" && p.Name.ToLower().Contains(PackageFilter.Text.ToLower()))
+                .ToList();
+
             PackageBindingSource.DataSource = list.Any() ? list.OrderBy(p => p.Name) : null;
         }
     }
