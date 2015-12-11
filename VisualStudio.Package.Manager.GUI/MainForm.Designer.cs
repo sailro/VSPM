@@ -32,14 +32,13 @@
             this.ConfigurationSource = new System.Windows.Forms.BindingSource(this.components);
             this.Configurations = new System.Windows.Forms.ComboBox();
             this.Packages = new System.Windows.Forms.DataGridView();
-            this.EnabledColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.UpdateConfiguration = new System.Windows.Forms.Button();
             this.ConfigurationLabel = new System.Windows.Forms.Label();
             this.PackagesLabel = new System.Windows.Forms.Label();
             this.PackageFilter = new System.Windows.Forms.TextBox();
+            this.EnabledColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ConfigurationSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Packages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PackageBindingSource)).BeginInit();
@@ -73,8 +72,7 @@
             this.Packages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Packages.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.EnabledColumn,
-            this.NameColumn,
-            this.IdColumn});
+            this.NameColumn});
             this.Packages.DataSource = this.PackageBindingSource;
             this.Packages.Location = new System.Drawing.Point(21, 71);
             this.Packages.MultiSelect = false;
@@ -82,29 +80,6 @@
             this.Packages.RowTemplate.Height = 24;
             this.Packages.Size = new System.Drawing.Size(962, 590);
             this.Packages.TabIndex = 1;
-            // 
-            // EnabledColumn
-            // 
-            this.EnabledColumn.DataPropertyName = "EnabledColumn";
-            this.EnabledColumn.HeaderText = "EnabledColumn";
-            this.EnabledColumn.Name = "EnabledColumn";
-            // 
-            // NameColumn
-            // 
-            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NameColumn.DataPropertyName = "Name";
-            this.NameColumn.HeaderText = "Name";
-            this.NameColumn.Name = "NameColumn";
-            this.NameColumn.ReadOnly = true;
-            this.NameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.DataPropertyName = "IdColumn";
-            this.IdColumn.HeaderText = "IdColumn";
-            this.IdColumn.Name = "IdColumn";
-            this.IdColumn.ReadOnly = true;
-            this.IdColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // PackageBindingSource
             // 
@@ -150,6 +125,21 @@
             this.PackageFilter.TabIndex = 5;
             this.PackageFilter.TextChanged += new System.EventHandler(this.PackageFilter_TextChanged);
             // 
+            // EnabledColumn
+            // 
+            this.EnabledColumn.DataPropertyName = "Enabled";
+            this.EnabledColumn.HeaderText = "Enabled";
+            this.EnabledColumn.Name = "EnabledColumn";
+            // 
+            // NameColumn
+            // 
+            this.NameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NameColumn.DataPropertyName = "Name";
+            this.NameColumn.HeaderText = "Name";
+            this.NameColumn.Name = "NameColumn";
+            this.NameColumn.ReadOnly = true;
+            this.NameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -184,7 +174,6 @@
         private System.Windows.Forms.Label ConfigurationLabel;
         private System.Windows.Forms.Label PackagesLabel;
         private System.Windows.Forms.TextBox PackageFilter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledColumn;
     }
