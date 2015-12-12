@@ -34,12 +34,12 @@
             this.Packages = new System.Windows.Forms.DataGridView();
             this.EnabledColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.NameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PackageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.UpdateConfiguration = new System.Windows.Forms.Button();
             this.ConfigurationLabel = new System.Windows.Forms.Label();
             this.PackagesLabel = new System.Windows.Forms.Label();
             this.PackageFilter = new System.Windows.Forms.TextBox();
-            this.SourceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ConfigurationSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Packages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PackageBindingSource)).BeginInit();
@@ -98,6 +98,14 @@
             this.NameColumn.ReadOnly = true;
             this.NameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // SourceColumn
+            // 
+            this.SourceColumn.DataPropertyName = "Source";
+            this.SourceColumn.HeaderText = "Source";
+            this.SourceColumn.Name = "SourceColumn";
+            this.SourceColumn.ReadOnly = true;
+            this.SourceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // PackageBindingSource
             // 
             this.PackageBindingSource.DataSource = typeof(VisualStudio.Package.Manager.VisualStudioPackage);
@@ -142,13 +150,6 @@
             this.PackageFilter.TabIndex = 5;
             this.PackageFilter.TextChanged += new System.EventHandler(this.PackageFilter_TextChanged);
             // 
-            // SourceColumn
-            // 
-            this.SourceColumn.DataPropertyName = "Source";
-            this.SourceColumn.HeaderText = "Source";
-            this.SourceColumn.Name = "SourceColumn";
-            this.SourceColumn.ReadOnly = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -160,6 +161,7 @@
             this.Controls.Add(this.UpdateConfiguration);
             this.Controls.Add(this.Packages);
             this.Controls.Add(this.Configurations);
+            this.MinimumSize = new System.Drawing.Size(640, 200);
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -183,9 +185,9 @@
         private System.Windows.Forms.Label ConfigurationLabel;
         private System.Windows.Forms.Label PackagesLabel;
         private System.Windows.Forms.TextBox PackageFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SourceColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn EnabledColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SourceColumn;
     }
 }
 
