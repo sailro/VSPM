@@ -13,4 +13,5 @@ To quickly undo everything, reuse the tool or delete the devenv.pkgundef file, a
 
 This tool is for advanced users, be aware that you can break everything if you don't know what you are doing. 
 
+![alt VSPM](./screenshot.png)
 
