@@ -47,7 +47,8 @@ namespace VisualStudio.Package.Manager.GUI
                 .Where(p => p.Name != "?" && p.Name.ToLower().Contains(PackageFilter.Text.ToLower()))
                 .ToList();
 
-            PackageBindingSource.DataSource = list.Any() ? new SortableBindingList<VisualStudioPackage>(list) : null;
+	        var sortableList = new SortableBindingList<VisualStudioPackage>(list);
+			PackageBindingSource.DataSource = sortableList;
         }
     }
 }
