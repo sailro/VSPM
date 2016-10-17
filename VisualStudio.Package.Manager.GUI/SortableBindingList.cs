@@ -37,7 +37,7 @@ namespace VisualStudio.Package.Manager.GUI
 		{
 			_sortProperty = prop;
 			var orderByMethodName = _sortDirection == ListSortDirection.Ascending ? "OrderBy" : "OrderByDescending";
-			var cacheKey = typeof (T).GUID + prop.Name + orderByMethodName;
+			var cacheKey = typeof(T).GUID + prop.Name + orderByMethodName;
 
 			if (!CachedOrderByExpressions.ContainsKey(cacheKey))
 			{
@@ -52,20 +52,20 @@ namespace VisualStudio.Package.Manager.GUI
 				: ListSortDirection.Ascending;
 		}
 
-		private void CreateOrderByMethod(PropertyDescriptor prop, string orderByMethodName, string cacheKey)
+		private static void CreateOrderByMethod(PropertyDescriptor prop, string orderByMethodName, string cacheKey)
 		{
-			var sourceParameter = Expression.Parameter(typeof (List<T>), "source");
-			var lambdaParameter = Expression.Parameter(typeof (T), "lambdaParameter");
-			var accesedMember = typeof (T).GetProperty(prop.Name);
+			var sourceParameter = Expression.Parameter(typeof(List<T>), "source");
+			var lambdaParameter = Expression.Parameter(typeof(T), "lambdaParameter");
+			var accesedMember = typeof(T).GetProperty(prop.Name);
 
 			var propertySelectorLambda =
 				Expression.Lambda(Expression.MakeMemberAccess(lambdaParameter, accesedMember), lambdaParameter);
 
-			var orderByMethod = typeof (Enumerable)
+			var orderByMethod = typeof(Enumerable)
 				.GetMethods()
 				.Single(a => a.Name == orderByMethodName &&
-				            a.GetParameters().Length == 2)
-				.MakeGenericMethod(typeof (T), prop.PropertyType);
+				             a.GetParameters().Length == 2)
+				.MakeGenericMethod(typeof(T), prop.PropertyType);
 
 			var orderByExpression = Expression.Lambda<Func<List<T>, IEnumerable<T>>>(
 				Expression.Call(orderByMethod,
@@ -85,7 +85,7 @@ namespace VisualStudio.Package.Manager.GUI
 			ResetItems(_originalList);
 		}
 
-		private void ResetItems(List<T> items)
+		private void ResetItems(IList<T> items)
 		{
 
 			ClearItems();
